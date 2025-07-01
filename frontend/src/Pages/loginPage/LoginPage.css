@@ -1,0 +1,56 @@
+.poll-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.poll-description {
+  margin-bottom: 30px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.role-btn {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  margin-bottom: 20px;
+  width: 45%;
+}
+
+.role-btn.active {
+  border-color: #6f42c1;
+}
+
+.role-btn p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.role-btn span {
+  display: block;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+.poll-btn {
+  background: linear-gradient(90deg, #7565d9 0%, #4d0acd 100%);
+  align-content: center;
+  color: white !important;
+  border-radius: 25px !important;
+  font-size: 1rem !important;
+}
+.continue-btn {
+  background: linear-gradient(99.18deg, #8f64e1 -46.89%, #1d68bd 223.45%);
+  color: white !important;
+  border-radius: 25px !important;
+  padding: 10px 30px !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease;
+}
+
+.continue-btn:hover {
+  background: linear-gradient(99.18deg, #9d76e7 -46.89%, #2476d1 223.45%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(143, 100, 225, 0.3);
+}
