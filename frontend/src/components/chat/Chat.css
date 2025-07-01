@@ -107,3 +107,59 @@ td button {
   background-color: rgba(220, 53, 69, 0.1);
   text-decoration: none;
 }
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .current-user,
+  .other-user {
+    width: 80%;
+  }
+
+  .chat-window {
+    height: 200px;
+  }
+
+  .participants-table th,
+  .participants-table td {
+    padding: 6px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .current-user,
+  .other-user {
+    width: 90%;
+    padding: 6px;
+    font-size: 0.9rem;
+  }
+
+  .chat-window {
+    height: 180px;
+    padding: 8px;
+  }
+
+  .message-form {
+    flex-direction: column;
+  }
+
+  .message-input {
+    margin-bottom: 5px;
+  }
+
+  .participants-table th,
+  .participants-table td {
+    padding: 4px;
+    font-size: 0.8rem;
+  }
+
+  .kick-button {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+
+  td,
+  th {
+    padding: 6px;
+  }
+}

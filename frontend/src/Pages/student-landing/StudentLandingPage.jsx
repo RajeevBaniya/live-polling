@@ -6,7 +6,7 @@ import "./StudentLandingPage.css";
 const StudentLandingPage = () => {
   let navigate = new useNavigate();
 
-  const [name, setName] = useState(null);
+  const [name, setName] = useState("");
   const handleStudentLogin = async (e) => {
     e.preventDefault();
 
@@ -25,27 +25,31 @@ const StudentLandingPage = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="text-center" style={{ maxWidth: "800px" }}>
-        <button className="btn btn-sm poll-btn mb-3">
-          <img src={stars} className="px-1" alt="" />
-          Live Poll
+      <div className="landing-container text-center">
+        <button className="btn poll-btn mb-4">
+          <img src={stars} alt="Live Poll Icon" width="16" height="16" />
+          <span>Live Poll</span>
         </button>
         <h2 className="landing-title mb-3">Let's Get Started</h2>
-        <p className="landing-description">
+        <p className="landing-description mb-4">
           If you're a student, you'll be able to{" "}
           <span className="text-dark fw-bold">submit your answers</span>,
           participate in live polls, and see how your responses compare with
           your classmates
         </p>
         <form onSubmit={handleStudentLogin} className="mt-4">
-          <div className="mx-auto" style={{ maxWidth: "400px" }}>
-            <label className="d-block text-start mb-2">Enter your Name</label>
+          <div className="form-container">
+            <label htmlFor="name-input" className="name-label">
+              Enter your Name
+            </label>
             <input
+              id="name-input"
               type="text"
               className="form-control mb-4 name-input"
               required
-              style={{ maxWidth: "400px" }}
+              value={name}
               onChange={(e) => setName(e.target.value)}
+              placeholder="Type your name here"
             />
             <button type="submit" className="btn continue-btn">
               Continue

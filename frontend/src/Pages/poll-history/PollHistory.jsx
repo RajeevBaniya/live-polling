@@ -4,6 +4,9 @@ import io from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import backIcon from "../../assets/back.svg";
+import eye from "../../assets/eye.svg";
+import "./PollHistory.css";
+
 let apiUrl =
   import.meta.env.VITE_NODE_ENV === "production"
     ? import.meta.env.VITE_API_BASE_URL
@@ -13,6 +16,7 @@ const socket = io(apiUrl);
 const PollHistoryPage = () => {
   const [polls, setPolls] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     const getPolls = async () => {
       const username = sessionStorage.getItem("username");
@@ -32,24 +36,30 @@ const PollHistoryPage = () => {
     if (totalVotes === 0) return 0;
     return (count / totalVotes) * 100;
   };
+
   const handleBack = () => {
     navigate("/teacher-home-page");
   };
+
   let questionCount = 0;
 
   return (
-    <div className="container mt-5 w-50">
-      <div className="mb-4 text-left text-white">
+    <div className="container mt-5">
+      <div className="d-flex align-items-center mb-4">
         <img
           src={backIcon}
-          alt=""
-          width={"25px"}
-          srcset=""
-          style={{ cursor: "pointer" }}
+          alt="Back"
+          className="back-button me-2"
+          width="25"
+          height="25"
           onClick={handleBack}
-        />{" "}
-        View <b>Poll History</b>
+        />
+        <button className="btn history-btn">
+          <img src={eye} alt="View Icon" />
+          <span>View Poll history</span>
+        </button>
       </div>
+
       {polls.length > 0 ? (
         polls.map((poll) => {
           const totalVotes = poll.options.reduce(
@@ -58,9 +68,9 @@ const PollHistoryPage = () => {
           );
 
           return (
-            <>
-              <div className="pb-3">{`Quetion ${++questionCount}`}</div>
-              <div key={poll._id} className="card mb-4">
+            <div key={poll._id}>
+              <div className="pb-3">{`Question ${++questionCount}`}</div>
+              <div className="card mb-4">
                 <div className="card-body">
                   <h6 className="question py-2 ps-2 text-left rounded text-white">
                     {poll.question} ?
@@ -100,11 +110,11 @@ const PollHistoryPage = () => {
                   </div>
                 </div>
               </div>
-            </>
+            </div>
           );
         })
       ) : (
-        <div className="text-muted">polls not found</div>
+        <div className="text-muted">No polls found</div>
       )}
     </div>
   );

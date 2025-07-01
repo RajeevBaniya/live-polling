@@ -85,22 +85,21 @@ const TeacherLandingPage = () => {
   };
 
   return (
-    <>
-      <button
-        className="btn rounded-pill ask-question px-4 m-2"
-        onClick={handleViewPollHistory}
-      >
-        <img src={eyeIcon} alt="" />
-        View Poll history
-      </button>
-      <div className="container my-4 w-75 ms-5">
-        <button className="btn btn-sm poll-btn mb-3">
-          <img src={stars} alt="Poll Icon" /> Live Poll
+    <div className="page-container">
+      <div className="poll-header">
+        <button className="btn history-btn" onClick={handleViewPollHistory}>
+          <img src={eyeIcon} alt="View History Icon" />
+          <span>View Poll history</span>
+        </button>
+      </div>
+
+      <div className="container my-4">
+        <button className="btn poll-btn mb-3">
+          <img src={stars} alt="Poll Icon" />
+          <span>Live Poll</span>
         </button>
 
-        <h2 className="fw-bold">
-          Let's <strong>Get Started</strong>
-        </h2>
+        <h2 className="fw-bold">Let's Get Started</h2>
         <p>
           <b>Teacher: </b>
           {username}
@@ -139,41 +138,47 @@ const TeacherLandingPage = () => {
         </div>
 
         <div className="mb-4">
-          <div className="d-flex justify-content-between pb-3">
+          <div className="options-header">
             <label className="form-label">Edit Options</label>
-            <label className="form-label">Is it correct?</label>
           </div>
           {options.map((option, index) => (
-            <div key={option.id} className="d-flex align-items-center mb-2">
-              <span className="me-3 sNo">{index + 1}</span>
-              <input
-                type="text"
-                className="form-control me-3 option-input"
-                placeholder="Option text..."
-                value={option.text}
-                onChange={(e) => handleOptionChange(index, e.target.value)}
-              />
-              <div className="form-check form-check-inline">
+            <div key={option.id} className="option-container">
+              <span className="sNo">{index + 1}</span>
+              <div className="option-input-container">
                 <input
-                  className="form-check-input"
-                  type="radio"
-                  name={`correct-${index}`}
-                  checked={option.correct === true}
-                  onChange={() => handleCorrectToggle(index, true)}
-                  required="required"
+                  type="text"
+                  className="option-input"
+                  placeholder="Option text..."
+                  value={option.text}
+                  onChange={(e) => handleOptionChange(index, e.target.value)}
                 />
-                <label className="form-check-label">Yes</label>
-              </div>
-              <div className="form-check form-check-inline">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name={`correct-${index}`}
-                  checked={option.correct === false}
-                  onChange={() => handleCorrectToggle(index, false)}
-                  required="required"
-                />
-                <label className="form-check-label">No</label>
+                <div className="radio-group">
+                  <span>Is it correct?</span>
+                  <div className="radio-options">
+                    <div className="radio-option">
+                      <input
+                        type="radio"
+                        id={`yes-${index}`}
+                        name={`correct-${index}`}
+                        checked={option.correct === true}
+                        onChange={() => handleCorrectToggle(index, true)}
+                        required="required"
+                      />
+                      <label htmlFor={`yes-${index}`}>Yes</label>
+                    </div>
+                    <div className="radio-option">
+                      <input
+                        type="radio"
+                        id={`no-${index}`}
+                        name={`correct-${index}`}
+                        checked={option.correct === false}
+                        onChange={() => handleCorrectToggle(index, false)}
+                        required="required"
+                      />
+                      <label htmlFor={`no-${index}`}>No</label>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -181,15 +186,18 @@ const TeacherLandingPage = () => {
         <button className="btn add-options" onClick={addOption}>
           + Add More option
         </button>
+
+        <div className="button-container">
+          <button
+            className="btn ask-question"
+            onClick={askQuestion}
+            disabled={!question.trim() || options.length < 2}
+          >
+            Ask Question
+          </button>
+        </div>
       </div>
-      <hr />
-      <button
-        className="btn rounded-pill ask-question px-4 m-2"
-        onClick={askQuestion}
-      >
-        Ask Question
-      </button>
-    </>
+    </div>
   );
 };
 

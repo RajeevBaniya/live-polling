@@ -1,24 +1,66 @@
-.progress-bar-bg{
-    background-color: #7565d9 
+.progress-bar-bg {
+  background-color: #7565d9;
 }
-.option-border{
-    border-color: #7565d9 !important
+.option-border {
+  border-color: #7565d9 !important;
 }
-.question{
-    background: linear-gradient(90deg, #343434 0%, #6E6E6E 100%);
+.question {
+  background: linear-gradient(90deg, #343434 0%, #6e6e6e 100%);
+}
 
-}
-
-  
 .landing-title {
-    font-size: 1.5rem;
-    font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.landing-description {
+  margin-bottom: 30px;
+  color: #6c757d;
+}
+
+.spinner {
+  color: rgba(80, 14, 206, 1);
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .container.w-50 {
+    width: 70% !important;
   }
-  
-  .landing-description {
-    margin-bottom: 30px;
-    color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .container.w-50 {
+    width: 85% !important;
   }
-  .spinner{
-    color: rgba(80, 14, 206, 1);
+
+  .student-landing-container {
+    width: 90% !important;
   }
+}
+
+@media (max-width: 576px) {
+  .container.w-50 {
+    width: 95% !important;
+  }
+
+  .list-group-item {
+    padding: 8px;
+  }
+
+  .question {
+    font-size: 1rem;
+  }
+
+  .card-body {
+    padding: 15px 10px;
+  }
+
+  .student-landing-container {
+    width: 100% !important;
+  }
+
+  .landing-title {
+    font-size: 1.3rem;
+  }
+}

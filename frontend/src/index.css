@@ -1,0 +1,154 @@
+/* Base styles */
+:root {
+  --primary-color: #6f42c1;
+  --secondary-color: #4d0acd;
+  --gradient: linear-gradient(90deg, #7565d9 0%, #4d0acd 100%);
+  --button-gradient: linear-gradient(
+    99.18deg,
+    #8f64e1 -46.89%,
+    #1d68bd 223.45%
+  );
+  --button-hover-gradient: linear-gradient(
+    99.18deg,
+    #9d76e7 -46.89%,
+    #2476d1 223.45%
+  );
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Sora", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Responsive container */
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Responsive typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+/* Responsive buttons */
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: all 0.15s ease-in-out;
+}
+
+/* Media queries for responsive design */
+/* Small devices (phones, 576px and down) */
+@media (max-width: 576px) {
+  .container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  h3.poll-title {
+    font-size: 1.8rem !important;
+  }
+
+  .role-btn {
+    width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+
+  .d-flex {
+    flex-direction: column !important;
+  }
+
+  .poll-btn,
+  .continue-btn {
+    width: 100%;
+  }
+
+  .student-answers-table {
+    font-size: 0.8rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 577px) and (max-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+
+  h3.poll-title {
+    font-size: 2rem !important;
+  }
+
+  .role-btn {
+    width: 48% !important;
+  }
+
+  .poll-container {
+    width: 90% !important;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+
+  .poll-container {
+    width: 80% !important;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 993px) {
+  .container {
+    max-width: 1140px;
+  }
+
+  .poll-container {
+    width: 70% !important;
+  }
+}
+
+/* Utility classes for responsive design */
+.w-100 {
+  width: 100% !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
