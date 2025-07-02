@@ -12,12 +12,7 @@ const {
 } = require("../src/controllers/poll");
 
 const app = express();
-app.use(
-  cors({
-    origin: "https://live-polling-rv2y.vercel.app",
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 const port = process.env.PORT || 3000;
@@ -36,7 +31,7 @@ mongoose
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://live-polling-rv2y.vercel.app",
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true,
   },
