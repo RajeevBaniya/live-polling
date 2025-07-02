@@ -14,8 +14,7 @@ const {
 const app = express();
 app.use(
   cors({
-    origin: ["https://live-polling-rv2y.vercel.app", "http://localhost:5174"],
-    methods: ["GET", "POST"],
+    origin: "https://live-polling-rv2y.vercel.app",
     credentials: true,
   })
 );
@@ -37,7 +36,7 @@ mongoose
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://live-polling-rv2y.vercel.app", "http://localhost:5174"],
+    origin: "https://live-polling-rv2y.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
