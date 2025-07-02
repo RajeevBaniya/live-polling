@@ -12,7 +12,13 @@ const {
 } = require("../src/controllers/poll");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://live-polling-rv2y.vercel.app", "http://localhost:5174"],
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const port = process.env.PORT || 3000;
@@ -31,7 +37,7 @@ mongoose
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: ["https://live-polling-rv2y.vercel.app", "http://localhost:5174"],
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -91,24 +97,24 @@ io.on("connection", (socket) => {
       });
 
       // Get the socket instance
-        const userSocket = io.sockets.sockets.get(id);
-        if (userSocket) {
+      const userSocket = io.sockets.sockets.get(id);
+      if (userSocket) {
         console.log("Disconnecting socket:", id);
         // Force disconnect immediately
-          userSocket.disconnect(true);
+        userSocket.disconnect(true);
       } else {
         console.log("Socket not found:", id);
       }
 
       // Remove from connected users
-        delete connectedUsers[id];
+      delete connectedUsers[id];
     });
 
     // Add the kicked user to the kickedUsers array if not already there
     if (!kickedUsers.includes(userToKick)) {
       kickedUsers.push(userToKick);
       console.log("Updated kicked users list:", kickedUsers);
-      }
+    }
 
     // Update the participants list for everyone
     io.emit("participantsUpdate", Object.values(connectedUsers));
