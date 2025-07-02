@@ -4,12 +4,9 @@ import Chat from "./Chat";
 import { io } from "socket.io-client";
 import "./Chat.css";
 import chatIcon from "../../assets/chat.svg";
+import { API_BASE_URL } from "../../config";
 
-let apiUrl =
-  import.meta.env.VITE_NODE_ENV === "production"
-    ? import.meta.env.VITE_API_BASE_URL
-    : "http://localhost:3000";
-const socket = io(apiUrl);
+const socket = io(API_BASE_URL);
 
 const ChatPopover = () => {
   const [messages, setMessages] = useState([]);

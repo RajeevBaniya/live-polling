@@ -6,12 +6,9 @@ import axios from "axios";
 import backIcon from "../../assets/back.svg";
 import eye from "../../assets/eye.svg";
 import "./PollHistory.css";
+import { API_BASE_URL } from "../../config";
 
-let apiUrl =
-  import.meta.env.VITE_NODE_ENV === "production"
-    ? import.meta.env.VITE_API_BASE_URL
-    : "http://localhost:3000";
-const socket = io(apiUrl);
+const socket = io(API_BASE_URL);
 
 const PollHistoryPage = () => {
   const [polls, setPolls] = useState([]);
@@ -22,7 +19,7 @@ const PollHistoryPage = () => {
       const username = sessionStorage.getItem("username");
 
       try {
-        const response = await axios.get(`${apiUrl}/polls/${username}`);
+        const response = await axios.get(`${API_BASE_URL}/polls/${username}`);
         setPolls(response.data.data);
       } catch (error) {
         console.error("Error fetching polls:", error);

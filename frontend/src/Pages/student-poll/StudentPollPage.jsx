@@ -6,11 +6,9 @@ import stopwatch from "../../assets/stopwatch.svg";
 import ChatPopover from "../../components/chat/ChatPopover";
 import { useNavigate } from "react-router-dom";
 import stars from "../../assets/spark.svg";
-let apiUrl =
-  import.meta.env.VITE_NODE_ENV === "production"
-    ? import.meta.env.VITE_API_BASE_URL
-    : "http://localhost:3000";
-const socket = io(apiUrl);
+import { API_BASE_URL } from "../../config";
+
+const socket = io(API_BASE_URL);
 
 const StudentPollPage = () => {
   const [votes, setVotes] = useState({});
