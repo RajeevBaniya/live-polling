@@ -19,10 +19,19 @@ const TeacherPollPage = () => {
   const navigate = new useNavigate();
   useEffect(() => {
     socket.on("pollCreated", (pollData) => {
+      console.log("🏫 TEACHER POLL: Received own pollCreated event");
+      console.log("🏫 Poll confirmation:", {
+        question: pollData.question,
+        options: pollData.options?.length || 0,
+        pollId: pollData._id,
+      });
+
       setPollQuestion(pollData.question);
       setPollOptions(pollData.options);
       setVotes({});
       setStudentAnswers([]);
+
+      console.log("🏫 TEACHER POLL: Poll display updated");
     });
 
     socket.on("pollResults", (updatedVotes) => {

@@ -48,12 +48,28 @@ let connectedUsers = {};
 let kickedUsers = []; // Array to track kicked usernames
 
 io.on("connection", (socket) => {
-  console.log("User connected:", socket.id);
+  console.log("🔌 User connected:", socket.id);
+  console.log("👥 Total connected clients:", io.engine.clientsCount);
 
   socket.on("createPoll", async (pollData) => {
+    console.log("📝 RECEIVED createPoll event from:", socket.id);
+    console.log("📝 Poll data:", {
+      question: pollData.question,
+      options: pollData.options?.length || 0,
+      timer: pollData.timer,
+      teacher: pollData.teacherUsername,
+    });
+
     votes = {};
     const poll = await createPoll(pollData);
+
+    console.log("💾 Poll saved to database with ID:", poll._id);
+    console.log("📡 BROADCASTING pollCreated to all connected clients");
+    console.log("📡 Number of connected clients:", io.engine.clientsCount);
+
     io.emit("pollCreated", poll);
+
+    console.log("✅ Poll broadcast completed");
   });
 
   socket.on("kickOut", (kickData) => {
@@ -176,7 +192,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log("User disconnected:", socket.id);
+    console.log("🔌❌ User disconnected:", socket.id);
+    console.log("👥 Remaining connected clients:", io.engine.clientsCount);
   });
 });
 

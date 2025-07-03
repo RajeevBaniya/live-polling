@@ -85,6 +85,14 @@ const StudentPollPage = () => {
 
   useEffect(() => {
     socket.on("pollCreated", (pollData) => {
+      console.log("🎓 STUDENT: Received pollCreated event");
+      console.log("🎓 Poll data received:", {
+        question: pollData.question,
+        options: pollData.options?.length || 0,
+        timer: pollData.timer,
+        pollId: pollData._id,
+      });
+
       setPollQuestion(pollData.question);
       setPollOptions(pollData.options);
       setVotes({});
@@ -92,6 +100,8 @@ const StudentPollPage = () => {
       setSelectedOption(null);
       setTimeLeft(pollData.timer);
       setPollId(pollData._id);
+
+      console.log("🎓 STUDENT: Poll UI updated successfully");
     });
 
     socket.on("pollResults", (updatedVotes) => {

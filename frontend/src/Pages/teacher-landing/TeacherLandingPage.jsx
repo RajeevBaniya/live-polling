@@ -75,7 +75,13 @@ const TeacherLandingPage = () => {
     if (validateForm()) {
       let teacherUsername = sessionStorage.getItem("username");
       let pollData = { question, options, timer, teacherUsername };
+
+      console.log("🏫 TEACHER: Sending createPoll event");
+      console.log("🏫 Poll data being sent:", pollData);
+
       socket.emit("createPoll", pollData);
+
+      console.log("🏫 TEACHER: createPoll event sent, navigating to poll page");
       navigate("/teacher-poll");
     }
   };
