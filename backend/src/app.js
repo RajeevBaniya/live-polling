@@ -12,7 +12,13 @@ const {
 } = require("../src/controllers/poll");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const port = process.env.PORT || 3001;
